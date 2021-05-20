@@ -17,7 +17,8 @@ function Todo({ newTodo }) {
     }
     return (
         <div>
-            <input data-testid="add-input" onChange={newTodoChangeListener} value={todoData.title ? todoData.title : ""} type="text"></input>
+            <label name="add-todo" htmlFor="add-todo-input">Add Todo</label>
+            <input id="add-todo-input" data-testid="add-input" onChange={newTodoChangeListener} value={todoData.title ? todoData.title : ""} type="text"></input>
             <button disabled={!todoData.title} onClick={addTodoListener}>Add</button>
         </div>
     )

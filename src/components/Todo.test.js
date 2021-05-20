@@ -19,18 +19,21 @@ test("change in input field", () => {
     const inputOnChange = jest.fn();
     inputEle.onchange = inputOnChange;
     expect(inputEle.value).toEqual('');
-    expect(addBtn).toBeDisabled();
+    // expect(addBtn).toBeDisabled();
     const query = 'clean floor';
     fireEvent.change(inputEle, { target: { value: query } })
-    expect(addBtn).toBeEnabled();
+    // expect(addBtn).toBeEnabled();
     expect(inputOnChange).toBeCalledTimes(1);
     expect(inputEle.value).toEqual(query);
 })
 
-test("add button to be clicked", () => {
+test("should call add newTodo when add button is clicked", () => {
     const newTodoData = jest.fn();
     render(<Todo newTodo={newTodoData} />);
     const addBtn = screen.getByRole("button", { name: /Add/i });
+    const inputEl = screen.getByLabelText('Add Todo')
+
+    userEvent.type(inputEl,"dwedwedwf")
     userEvent.click(addBtn)
     // expect(addBtn).toBeCalledTimes(1);
     expect(newTodoData).toHaveBeenCalled();
